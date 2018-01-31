@@ -1,0 +1,3 @@
+[submodule "estimator"]
+	path = estimator
+	url = https://bitbucket.org/malb/lwe-estimator.git
