@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+  <title>Estimate all the {LWE, NTRU} schemes!</title>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css" type="text/css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.foundation.min.css" type="text/css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" type="text/css">
+  <link rel="stylesheet" href="css/codemirror.css">
+  <link rel="stylesheet" href="css/jquery.multiselect.css">
+  <link rel="stylesheet" href="css/neo.css">
+  <link rel="stylesheet" href="css/mdn-like.css">
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+  <link rel="stylesheet" href="css/dialog.css" type="text/css">
+  <link rel="stylesheet" href="css/spinner.css" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="js/codemirror.js"></script>
+  <script type="text/javascript" src="js/jquery.multiselect.js"></script>
+  <script type="text/javascript" src="js/python/python.js"></script>
+  <script type="text/javascript" src="js/dialog.js"></script>
+  <script type="text/javascript" src="res/full_table.js"></script>
+  <script type="text/javascript" src="js/table.js"></script>
+</head>
+<body>
+  <img src="res/logo.png"></img>
+  <div id="intro">
+    <p>Complextiy estimates for running the primal-uSVP and dual attacks against all LWE-based, and the primal-uSVP attack against all NTRU-based, Round 1 schemes proposed as part of the <a href="https://csrc.nist.gov/Projects/Post-Quantum-Cryptography" target="_blank">PQC process</a> run by NIST. We make use the <a href="https://bitbucket.org/malb/lwe-estimator/" target="_blank">[APS15] estimator</a>. The code for generating this table is available <a href="https://github.com/estimate-all-the-lwe-ntru-schemes/estimate-all-the-lwe-ntru-schemes.github.io" target="_blank">on Github</a>, as well as <a href="https://github.com/estimate-all-the-lwe-ntru-schemes/estimate-all-the-lwe-ntru-schemes.github.io/raw/master/paper.pdf" target="_blank">the paper</a>. Clicking on a particular estimate cell in the table will provide with stand-alone Sagemath code for reproducing the estimate.</p>
+    <p>Below, we provide LWE-equivalent parameters, where n = LWE secret dimension, k = MLWE rank (if any), q = modulo, σ  = standard deviation of the error, ℤ<sub>q</sub>/(𝜙) is the ring (if any). For NTRU schemes we provide ‖f‖, ‖g‖ = lengths of the short polynomials. If you spot a mistake in a parameter set or cost model, please feel free to <a href="https://github.com/estimate-all-the-lwe-ntru-schemes/estimate-all-the-lwe-ntru-schemes.github.io/issues" target="_blank">open a ticket</a> or to make a pull-request.<p>
+  </div>
+
+  <div id="tables" style="display: none">
+    <div id="toolbar">
+      <fieldset id="table-options">
+        <label for="radio-n">LWE n samples</label>
+        <input type="radio" name="radio-m" id="radio-n" value="#lwe-n">
+        <label for="radio-2n">LWE 2n samples</label>
+        <input type="radio" name="radio-m" id="radio-2n" value="#lwe-2n">
+        <label for="radio-ntru">NTRU</label>
+        <input type="radio" name="radio-m" id="radio-ntru" value="#ntru">
+      </fieldset>
+
+      <div id="select-cols-wrap">
+        <select name="basic[]" multiple="multiple" class="3col active">
+        </select>
+      </div>
+    </div>
+
+    <table id="lwe-n" class="estimates">
+      <thead>
+          <tr></tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <table id="lwe-2n" class="estimates">
+      <thead>
+          <tr></tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <table id="ntru" class="estimates">
+      <thead>
+          <tr></tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  <div id="spinner" class="spinner">
+      <div class="sk-folding-cube">
+        <div class="sk-cube1 sk-cube"></div>
+        <div class="sk-cube2 sk-cube"></div>
+        <div class="sk-cube4 sk-cube"></div>
+        <div class="sk-cube3 sk-cube"></div>
+      </div>
+  </div>
+  <hr>
+  <div class="authors">Martin R. Albrecht, Benjamin R. Curtis, Amit Deo, Alex Davidson, Rachel Player, Eamonn Postlethwaite, Fernando Virdia, Thomas Wunderer.</div>
+</body>
+</html>

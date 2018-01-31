@@ -1,0 +1,152 @@
+body {
+  font-family: cursive;
+  font-size: 1em;
+}
+
+td.data-entry {
+  text-align: center;
+  padding: 0;
+}
+
+/* div.data-entry {
+  padding: 4px;
+} */
+
+/* div.data-entry:hover, */
+td.data-entry:hover {
+  cursor: pointer;
+  background-color: rgb(235, 235, 235);
+}
+
+div.cell-overflow {
+  overflow: hidden;
+  max-height: 20px;
+  user-select: none;
+}
+
+.ui-tooltip {
+  background-color: #F9F9F9;
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.ui-tooltip, .ui-tooltip-content {
+  display: inline;
+}
+
+.ui-helper-hidden-accessible {
+  display:none;
+}
+
+
+div.dataTables_wrapper div.dataTables_filter label {
+    /* margin-right: 20px; */
+}
+
+th {
+  padding: 0;
+}
+
+select {
+  margin: 0;
+  margin-top: 10px;
+  max-height: 10px;
+  width: calc(100% - 11px);
+  font-size: 11px;
+}
+
+.dataTables_info {
+  display: none;
+}
+
+.authors {
+  /* font-size: 12px; */
+  margin-left: 10px;
+}
+
+hr {
+  margin: 0 0 3px 10px;
+  width: 400px;
+}
+
+.popup-content {
+  overflow: auto;
+}
+
+#tables {
+  position: relative;
+}
+
+#toolbar {
+  position: absolute;
+  top: -1px;
+  z-index:  10;
+  margin: 0 0 0 10px;
+}
+
+#table-options {
+  padding: 0;
+  border:  0;
+  display: inline-block;
+  margin: 0;
+}
+
+#table-options > label {
+    margin: 0 10px 0 0;
+    vertical-align:  baseline;
+}
+
+#tables > div {
+    margin: 0 10px;
+}
+
+#preface {
+  margin: 10px;
+}
+
+.ui-widget {
+  font-family: cursive;
+}
+
+#select-cols-wrap {
+  display: inline-block;
+  /* position: absolute;
+  left: 526px; */
+}
+
+#select-cols-wrap > .ms-options-wrap > button {
+  height: 36px;
+  font-family: cursive;
+}
+
+.ui-tooltip-content > .supsub {
+  position: absolute;
+}
+.ui-tooltip-content .supsub > .sub {
+  display: block;
+  position: relative;
+  left: -19px;
+  top: 1px;
+  text-align:  center;
+}
+.ui-tooltip-content > .supsub > .sup {
+  display: block;
+  position: relative;
+  left: -18px;
+  top: -7px;
+  text-align:  center;
+}
+
+td.ra {
+  text-align: right;
+}
+
+#intro {
+  margin: 10px;
+}
+
+#intro > p {
+  /* margin: 0; */
+  font-size: 11pt;
+}

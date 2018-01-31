@@ -1,0 +1,81 @@
+
+.popup-wrap {
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  border: 1px solid;
+  z-index: 1000;
+  background: white;
+  font-size: 10pt;
+}
+
+/* We tell all items to be 100% width */
+.popup-handle, .popup-mid, .popup-footer {
+  display: flex;
+  flex-flow: row;
+}
+
+.popup-mid.popup-centre {s
+  flex-grow: 1;
+}
+
+.popup-handle {
+  min-height: 18px;
+  line-height: 18px;
+  /* background-color: rgb(235, 235, 235); */
+  background-color: rgba(0,83,159,0.44);
+  color: white;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: move;
+}
+
+
+.popup-left,
+.popup-right {
+  min-width: 16px;
+}
+
+.popup-mid {
+  flex: 1 100%;
+}
+
+.popup-mid.popup-left,
+.popup-mid.popup-right {
+  flex: initial;
+}
+
+.popup-handle.popup-centre {
+  flex-grow: 1;
+}
+
+.popup-mid.popup-centre {
+  flex-grow: 1;
+}
+
+.popup-actions {
+  position: absolute;
+  right: 4px;
+  z-index: 2000;
+  font-weight: bold;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.popup-title {
+  margin: 0px auto;
+  font-family: sans-serif;
+}
+.popup-content {
+  flex: 1;
+  background-color: white;
+  /* margin: 4px; */
+}
+
+.CodeMirror {
+  height: inherit;
+}
