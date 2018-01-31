@@ -1,5 +1,16 @@
+@font-face {
+  font-family: 'Comic Neue';
+  src: url('../fonts/ComicNeue-Regular.eot');
+  src: url('../fonts/ComicNeue-Regular.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/ComicNeue-Regular.woff2') format('woff2'),
+       url('../fonts/ComicNeue-Regular.woff') format('woff'),
+       url('../fonts/ComicNeue-Regular.ttf')  format('truetype');
+  font-weight: 400;
+}
+
+
 body {
-  font-family: cursive;
+  font-family: 'Comic Neue', sans-serif;
   font-size: 1em;
 }
 
@@ -106,7 +117,7 @@ hr {
 }
 
 .ui-widget {
-  font-family: cursive;
+  font-family: 'Comic Neue', sans-serif;
 }
 
 #select-cols-wrap {
@@ -117,7 +128,7 @@ hr {
 
 #select-cols-wrap > .ms-options-wrap > button {
   height: 36px;
-  font-family: cursive;
+  font-family: 'Comic Neue', sans-serif;
 }
 
 .ui-tooltip-content > .supsub {

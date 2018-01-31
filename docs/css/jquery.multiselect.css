@@ -111,7 +111,7 @@
     display: block;
     padding: 5px 0;
     font-weight: bold;
-    font-family: cursive;
+    font-family: 'Comic Neue', sans-serif;
 }
 
 .ms-options-wrap > .ms-options > ul label {

@@ -102,16 +102,16 @@ var drawTable = function (tableid, m, cb) {
     if ("ring" in attack.param) {
       var ring = attack.param.ring;
       // ring = ring.replace("\\ZZ_q", "ℤ<sub>q</sub>");
-      ring = ring.replace("^n", "<sup>n</sup>");
-      ring = ring.replace("^p", "<sup>p</sup>");
-      ring = ring.replace("^{n/k}", "<sup>n/k</sup>");
-      ring = ring.replace("^{n/(2k)}", "<sup>n/(2k)</sup>");
       ring = ring.replace("\\sum_{i=0}^n", "∑<span class='supsub'><sup class='sup'>n</sup><sub class='sub'>i = 0</sub></span>");
       ring = ring.replace("\\sum^n_{i=0}", "∑<span class='supsub'><sup class='sup'>n</sup><sub class='sub'>i = 0</sub></span>");
       ring = ring.replace("\\sum_{i=0}^{n-1}", "∑<span class='supsub'><sup class='sup'>n-1</sup><sub class='sub'>i = 0</sub></span>");
       ring = ring.replace("\\sum^{n-1}_{i=0}", "∑<span class='supsub'><sup class='sup'>n-1</sup><sub class='sub'>i = 0</sub></span>");
       ring = ring.replace("\\sum_{i=1}^{n-1}", "∑<span class='supsub'><sup class='sup'>n-1</sup><sub class='sub'>i = 1</sub></span>");
       ring = ring.replace("\\sum^{n-1}_{i=1}", "∑<span class='supsub'><sup class='sup'>n-1</sup><sub class='sub'>i = 1</sub></span>");
+      ring = ring.replace("^n", "<sup>n</sup>");
+      ring = ring.replace("^p", "<sup>p</sup>");
+      ring = ring.replace("^{n/k}", "<sup>n/k</sup>");
+      ring = ring.replace("^{n/(2k)}", "<sup>n/(2k)</sup>");
       ring = ring.replace("^i", "<sup>i</sup>");
       ring = ring.replace("_i", "<sub>i</sub>");
       ring = ring.replace("_0", "<sub>0</sub>");
