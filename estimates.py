@@ -27,10 +27,14 @@ from schemes import LWE_SCHEMES, NTRU_SCHEMES
 from cost_asymptotics import BKZ_COST_ASYMPTOTICS
 from html import generate_json
 from inspect import getsource
-
-
-NCPUS = 2
-SOBJPATH = "all_the_schemes.sobj"
+try:
+    from config import NCPUS
+except ImportError:
+    NCPUS = 2
+try:
+    from config import SOBJPATH
+except ImportError:
+    SOBJPATH = "all_the_schemes.sobj"
 
 
 def flatten(l):

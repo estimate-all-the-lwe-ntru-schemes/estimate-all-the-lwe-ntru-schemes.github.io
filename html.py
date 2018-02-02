@@ -15,7 +15,11 @@ from inspect import getsource
 from string import lower
 import json
 
-JSONPATH = "docs/res/full_table.js"
+try:
+    from config import JSONPATH
+except ImportError:
+    JSONPATH = "docs/res/full_table.js"
+
 
 def generate_costs_json():
     """ Generates a JSON string from the BKZ_COST_ASYMPTOTICS list.
@@ -94,7 +98,6 @@ def generate_table_json(estimates_list):
         return scheme
 
     return json.dumps(map(sanitise_param, estimates_list))
-
 
 def generate_json(estimates_list):
     """ Generates a JSON string from the estimates and asymptotics list, and add
