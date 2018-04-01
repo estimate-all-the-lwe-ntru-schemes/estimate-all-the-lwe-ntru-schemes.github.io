@@ -247,7 +247,7 @@ LWE_SCHEMES = [
             "MLWE",
         ],
         "primitive": [
-            "DSA",
+            "SIG",
         ],
     },
     {
@@ -1351,7 +1351,7 @@ LWE_SCHEMES = [
             "RLWE",
         ],
         "primitive": [
-            "DSA",
+            "SIG",
         ],
     },
     {
@@ -1578,7 +1578,7 @@ NTRU_SCHEMES = [
             "NTRU",
         ],
         "primitive": [
-            "DSA",
+            "SIG",
         ],
     },
     {
@@ -1671,7 +1671,7 @@ NTRU_SCHEMES = [
             "NTRU",
         ],
         "primitive": [
-            "DSA",
+            "SIG",
         ],
     },
 ]
