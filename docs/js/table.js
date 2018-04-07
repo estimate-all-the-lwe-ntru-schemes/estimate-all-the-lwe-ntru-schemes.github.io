@@ -14,37 +14,50 @@ var tables = {};
 
 var drawTable = function (tableid, m, cb) {
   // draw the head
-  var thead = $(tableid + " > thead > tr")[0];
+  var thead0 = $(tableid + " > thead > tr")[0];
   var hscheme = document.createElement("th");
   hscheme.innerText = "Scheme";
+  hscheme.rowSpan = 2;
   $(hscheme).data("select", "1");
-  thead.appendChild(hscheme);
+  thead0.appendChild(hscheme);
   var hassumption = document.createElement("th");
   hassumption.innerText = "Assumption";
+  hassumption.rowSpan = 2;
   $(hassumption).data("select", "1");
-  thead.appendChild(hassumption);
+  thead0.appendChild(hassumption);
   var hprimitive = document.createElement("th");
   hprimitive.innerText = "Primitive";
+  hprimitive.rowSpan = 2;
   $(hprimitive).data("select", "1");
-  thead.appendChild(hprimitive);
+  thead0.appendChild(hprimitive);
   var hparameters = document.createElement("th");
-  hparameters.innerText = "Parameters"
-  thead.appendChild(hparameters);
+  hparameters.innerText = "Parameters";
+  hparameters.rowSpan = 2;
+  thead0.appendChild(hparameters);
   var hclaimed = document.createElement("th");
   hclaimed.innerText = "Claimed security";
-  thead.appendChild(hclaimed);
+  hclaimed.rowSpan = 2;
+  thead0.appendChild(hclaimed);
   var hcategory = document.createElement("th");
   hcategory.innerText = "NIST Category";
+  hcategory.rowSpan = 2;
   $(hcategory).data("select", "1");
-  thead.appendChild(hcategory);
+  thead0.appendChild(hcategory);
   var hatk = document.createElement("th");
   hatk.innerText = "Attack";
+  hatk.rowSpan = 2;
   $(hatk).data("select", "1");
-  thead.appendChild(hatk);
+  thead0.appendChild(hatk);
+  var hmodels = document.createElement("th");
+  hmodels.innerText = "Proposed BKZ cost models";
+  hmodels.colSpan = models.length;
+  thead0.appendChild(hmodels);
+
+  var thead1 = $(tableid + " > thead > tr")[1];
   for (var j = 0; j < models.length; j++) {
     var th = document.createElement("th");
     th.innerText = models[j].name;
-    thead.appendChild(th);
+    thead1.appendChild(th);
   }
 
   // draw the body
@@ -142,11 +155,11 @@ var drawTable = function (tableid, m, cb) {
         ) : attack.cost[models[j].name][m];
         var cell = document.createElement("td");
         cell.className = "data-entry";
-        cell.innerText = cost.rop.toFixed(2);
+        cell.innerText = cost.rop;
 
         // add reproducible result
         var content = "# To reproduce the estimate run this snippet on http://aleph.sagemath.org/\n";
-        content += "# Ring ops: {0}\n".format(cost.rop.toFixed(2));
+        content += "# Ring ops: {0}\n".format(cost.rop);
         content += "# Block size: {0}\n".format(cost.beta);
         content += "# Dimension: {0}\n".format(cost.dim);
         content += "load('https://bitbucket.org/malb/lwe-estimator/raw/HEAD/estimator.py')\n";

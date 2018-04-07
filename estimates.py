@@ -158,7 +158,7 @@ def cost_scheme(scheme, debug=False):
                         "name": cname,
                         "dim":  int(cost_primal["d"]),
                         "beta": int(cost_primal["beta"]),
-                        "rop":  float(log(cost_primal["rop"], 2)),
+                        "rop":  int(ceil(log(cost_primal["rop"], 2))),
                         "drop": dropped,
                     }
                     if not is_ntru:
@@ -166,7 +166,7 @@ def cost_scheme(scheme, debug=False):
                             "name": cname,
                             "dim": int(cost_dual["d"]),
                             "beta": int(cost_dual["beta"]),
-                            "rop": float(log(cost_dual["rop"], 2)),
+                            "rop": int(ceil(log(cost_dual["rop"], 2))),
                             "drop": dropped,
                         }
 

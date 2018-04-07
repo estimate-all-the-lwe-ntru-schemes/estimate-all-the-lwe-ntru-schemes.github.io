@@ -35,7 +35,7 @@ from sage.all import sqrt, ln, floor, RR, ZZ
 # List of proposed schemes
 LWE_SCHEMES = [
     {
-        "name": "AKCN‑RLWE",
+        "name": "KCL‑RLWE",
         "params": [
             {
                 "n": 1024,
@@ -58,7 +58,7 @@ LWE_SCHEMES = [
         ],
     },
     {
-        "name": "AKCN‑MLWE",
+        "name": "KCL‑MLWE",
         "params": [
             {
                 "n": 256*3,
@@ -145,7 +145,6 @@ LWE_SCHEMES = [
                 "ring": "q^{n/k} - q^{n/(2k)} - 1",
             },
             {
-
                 "n": 3*312,
                 "sd": sqrt(1/ZZ(2)),
                 "q": 2**10,
@@ -168,11 +167,11 @@ LWE_SCHEMES = [
     {
         "name": "PapaBear",
         "params": [
-            { # CPA
-                "n": 3*312, # 1
+            {
+                "n": 4*312,
                 "sd": sqrt(3/ZZ(4)),
-                "q": 2**10, # 2**(10*312) - 2**(5*312) - 1,
-                "k": 3,
+                "q": 2**10,
+                "k": 4,
                 "secret_distribution": "normal",
                 "claimed": 320,
                 "category": [
@@ -180,11 +179,11 @@ LWE_SCHEMES = [
                 ],
                 "ring": "q^{n/k} - q^{n/(2k)} - 1",
             },
-            { # CCA
-                "n": 3*312, # 1
+            {
+                "n": 4*312,
                 "sd": sqrt(3/ZZ(8)),
-                "q": 2**10, # 2**(10*312) - 2**(5*312) - 1,
-                "k": 3,
+                "q": 2**10,
+                "k": 4,
                 "secret_distribution": "normal",
                 "claimed": 292,
                 "category": [
@@ -377,22 +376,22 @@ LWE_SCHEMES = [
                 "sd": 25,
                 "q": 2**16,
                 "secret_distribution": (-1,1),
-                "claimed": 128,
+                "claimed": 128.1,
                 "category": [
                     1,
                 ],
-                "ring": "x^n+1",
+                "ring": "x^n+1 \\text{ \\textdagger}",
             },
             {
                 "n": 512,
                 "sd": 3,
                 "q": 2**14,
                 "secret_distribution": (-1,1),
-                "claimed": 128,
+                "claimed": 128.3,
                 "category": [
                     1,
                 ],
-                "ring": "x^n+1",
+                "ring": "x^n+1 \\text{ \\textdagger}",
             },
         ],
         "assumption": [
@@ -477,7 +476,7 @@ LWE_SCHEMES = [
                 "sd": sqrt(8),
                 "q": 12289,
                 "secret_distribution": "normal",
-                "claimed": 128,
+                "claimed": 255,
                 "category": [
                     5,
                 ],
@@ -496,7 +495,7 @@ LWE_SCHEMES = [
         "params": [
             {
                 "n": 256*3,
-                "sd": sqrt((8**2-1)/ZZ(12) + (-0.5)**2),
+                "sd": sqrt((8**2-1)/ZZ(12)),
                 "q": 2**14,
                 "k": 3,
                 "secret_distribution": (-4, 4), # (-4,3),
@@ -843,7 +842,7 @@ LWE_SCHEMES = [
                 "sd": 3,
                 "q": 8192,
                 "secret_distribution": "normal",
-                "claimed": 128,
+                "claimed": None,
                 "category": [
                     1,
                     2,
@@ -854,7 +853,7 @@ LWE_SCHEMES = [
                 "sd": 3,
                 "q": 8192,
                 "secret_distribution": "normal",
-                "claimed": 192,
+                "claimed": None,
                 "category": [
                     3,
                     4,
@@ -865,7 +864,7 @@ LWE_SCHEMES = [
                 "sd": 3,
                 "q": 8192,
                 "secret_distribution": "normal",
-                "claimed": 256,
+                "claimed": None,
                 "category": [
                     5,
                 ],
@@ -884,7 +883,7 @@ LWE_SCHEMES = [
         "params": [
             {
                 "n": 500,
-                "sd": sqrt(8**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt((q/p)**2/ZZ(12)), q/p = 8
+                "sd": sqrt(8**2/ZZ(12)), # q/p = 8
                 "q": 2**14,
                 "secret_distribution": ((-1,1), 74),
                 "claimed": 74,
@@ -894,7 +893,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 580,
-                "sd": sqrt(16**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 16
+                "sd": sqrt(16**2/ZZ(12)), # q/p = 16
                 "q": 2**15,
                 "secret_distribution": ((-1,1), 116),
                 "claimed": 96,
@@ -904,7 +903,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 630,
-                "sd": sqrt(16**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 16
+                "sd": sqrt(16**2/ZZ(12)), # q/p = 16
                 "q": 2**15,
                 "secret_distribution": ((-1,1), 126),
                 "claimed": 106,
@@ -914,7 +913,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 786,
-                "sd": sqrt(16**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 16
+                "sd": sqrt(16**2/ZZ(12)), # q/p = 16
                 "q": 2**15,
                 "secret_distribution": ((-1,1), 156),
                 "claimed": 139,
@@ -924,7 +923,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 786,
-                "sd": sqrt(16**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 16
+                "sd": sqrt(16**2/ZZ(12)), # q/p = 16
                 "q": 2**15,
                 "secret_distribution": ((-1,1), 156),
                 "claimed": 138,
@@ -941,11 +940,11 @@ LWE_SCHEMES = [
         ],
     },
     {
-        "name": "uRound2.KEM", # Ring
+        "name": "uRound2.KEM",
         "params": [
             {
                 "n": 418,
-                "sd": sqrt(16**2/ZZ(12)),  # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 16
+                "sd": sqrt(16**2/ZZ(12)),  # q/p = 16
                 "q": 2**12,
                 "secret_distribution": ((-1,1), 66),
                 "claimed": 75,
@@ -956,7 +955,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 522,
-                "sd": sqrt(128**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 128
+                "sd": sqrt(128**2/ZZ(12)), # q/p = 128
                 "q": 32768,
                 "secret_distribution": ((-1,1), 78),
                 "claimed": 97,
@@ -967,7 +966,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 540,
-                "sd": sqrt(64**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 64
+                "sd": sqrt(64**2/ZZ(12)), # q/p = 64
                 "q": 16384,
                 "secret_distribution": ((-1,1), 96),
                 "claimed": 106,
@@ -978,7 +977,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 700,
-                "sd": sqrt(128**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 128
+                "sd": sqrt(128**2/ZZ(12)), # q/p = 128
                 "q": 32768,
                 "secret_distribution": ((-1,1), 112),
                 "claimed": 140,
@@ -989,7 +988,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 676,
-                "sd": sqrt(128**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 128
+                "sd": sqrt(128**2/ZZ(12)), # q/p = 128
                 "q": 32768,
                 "secret_distribution": ((-1,1), 120),
                 "claimed": 139,
@@ -1011,7 +1010,7 @@ LWE_SCHEMES = [
         "params": [
             {
                 "n": 500,
-                "sd": sqrt(16**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 2**4
+                "sd": sqrt(16**2/ZZ(12)), # q/p = 2**4
                 "q": 32768,
                 "secret_distribution": ((-1,1), 74),
                 "claimed": 74,
@@ -1021,7 +1020,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 585,
-                "sd": sqrt(16**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 2**4
+                "sd": sqrt(16**2/ZZ(12)), # q/p = 2**4
                 "q": 32768,
                 "secret_distribution": ((-1,1), 110),
                 "claimed": 96,
@@ -1031,7 +1030,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 643,
-                "sd": sqrt(16**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 2**4
+                "sd": sqrt(16**2/ZZ(12)), # q/p = 2**4
                 "q": 32768,
                 "secret_distribution": ((-1,1), 114),
                 "claimed": 106,
@@ -1041,7 +1040,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 835,
-                "sd": sqrt(8**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 2**3
+                "sd": sqrt(8**2/ZZ(12)), # q/p = 2**3
                 "q": 32768,
                 "secret_distribution": ((-1,1), 166),
                 "claimed": 138,
@@ -1051,7 +1050,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 835,
-                "sd": sqrt(8**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 2**3
+                "sd": sqrt(8**2/ZZ(12)), # q/p = 2**3
                 "q": 32768,
                 "secret_distribution": ((-1,1), 166),
                 "claimed": 138,
@@ -1068,11 +1067,11 @@ LWE_SCHEMES = [
         ],
     },
     {
-        "name": "uRound2.PKE", # ring
+        "name": "uRound2.PKE",
         "params": [
             {
                 "n": 420,
-                "sd": sqrt(4**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 4
+                "sd": sqrt(4**2/ZZ(12)), # q/p = 4
                 "q": 1024,
                 "secret_distribution": ((-1,1), 62),
                 "claimed": 74,
@@ -1083,7 +1082,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 540,
-                "sd": sqrt(16**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 16
+                "sd": sqrt(16**2/ZZ(12)), # q/p = 16
                 "q": 8192,
                 "secret_distribution": ((-1,1), 96),
                 "claimed": 97,
@@ -1094,7 +1093,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 586,
-                "sd": sqrt(16**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 16
+                "sd": sqrt(16**2/ZZ(12)), # q/p = 16
                 "q": 8192,
                 "secret_distribution": ((-1,1), 104),
                 "claimed": 107,
@@ -1105,7 +1104,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 708,
-                "sd": sqrt(64**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), q/p = 2**6
+                "sd": sqrt(64**2/ZZ(12)), # q/p = 2**6
                 "q": 32768,
                 "secret_distribution": ((-1,1), 140),
                 "claimed": 138,
@@ -1128,7 +1127,7 @@ LWE_SCHEMES = [
         "params": [
             {
                 "n": 400,
-                "sd": sqrt((3209/ZZ(2**8))**2/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), p = 2**8
+                "sd": sqrt((3209/ZZ(2**8))**2/ZZ(12)), # p = 2**8
                 "q": 3209,
                 "secret_distribution": ((-1,1), 72),
                 "claimed": 74,
@@ -1139,7 +1138,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 486,
-                "sd": sqrt(((1949/ZZ(2**8))**2)/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), p = 2**8
+                "sd": sqrt(((1949/ZZ(2**8))**2)/ZZ(12)), # p = 2**8
                 "q": 1949,
                 "secret_distribution": ((-1,1), 96),
                 "claimed": 97,
@@ -1150,7 +1149,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 556,
-                "sd": sqrt(((3343/ZZ(2**8))**2)/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), p = 2**8
+                "sd": sqrt(((3343/ZZ(2**8))**2)/ZZ(12)), # p = 2**8
                 "q": 3343,
                 "secret_distribution": ((-1,1), 88),
                 "claimed": 106,
@@ -1161,7 +1160,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 658,
-                "sd": sqrt(((1319/ZZ(2**8))**2)/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), p = 2**8
+                "sd": sqrt(((1319/ZZ(2**8))**2)/ZZ(12)), # p = 2**8
                 "q": 1319,
                 "secret_distribution": ((-1,1), 130),
                 "claimed": 139,
@@ -1184,7 +1183,7 @@ LWE_SCHEMES = [
         "params": [
             {
                 "n": 442,
-                "sd": sqrt(((2659/ZZ(2**9))**2)/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), p= 2**9
+                "sd": sqrt(((2659/ZZ(2**9))**2)/ZZ(12)), # p = 2**9
                 "q": 2659,
                 "secret_distribution": ((-1,1), 74),
                 "claimed": 74,
@@ -1195,7 +1194,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 556,
-                "sd": sqrt(((3343/ZZ(2**9))**2)/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), p= 2**9
+                "sd": sqrt(((3343/ZZ(2**9))**2)/ZZ(12)), # p = 2**9
                 "q": 3343,
                 "secret_distribution": ((-1,1), 88),
                 "claimed": 97,
@@ -1206,7 +1205,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 576,
-                "sd": sqrt(((2309/ZZ(2**9))**2)/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), p= 2**9
+                "sd": sqrt(((2309/ZZ(2**9))**2)/ZZ(12)), # p = 2**9
                 "q": 2309,
                 "secret_distribution": ((-1,1), 108),
                 "claimed": 106,
@@ -1217,7 +1216,7 @@ LWE_SCHEMES = [
             },
             {
                 "n": 708,
-                "sd": sqrt(((2837/ZZ(2**9))**2)/ZZ(12)), # |e_i| < q/(2p) unif, sd = sqrt(((q/p+1)**2-1)/ZZ(12)), p= 2**9
+                "sd": sqrt(((2837/ZZ(2**9))**2)/ZZ(12)), # p = 2**9
                 "q": 2837,
                 "secret_distribution": ((-1,1), 140),
                 "claimed": 138,
@@ -1240,7 +1239,7 @@ LWE_SCHEMES = [
         "params": [
             {
                 "n": 2*256,
-                "sd": sqrt(16/ZZ(3)), # binomial -> sqrt(5), not far from 3
+                "sd": sqrt(16/ZZ(3)),
                 "q": 2**13,
                 "k": 2,
                 "secret_distribution": "normal",
@@ -1357,44 +1356,44 @@ LWE_SCHEMES = [
     {
         "name": "Titanium.PKE",
         "params": [
-            { # page 24, table 2.1, 128 bits of security
+            {
                 "n": 1024,
                 "sd": sqrt(2),
                 "q": 86017,
-                "secret_distribution": "normal", # 9*1024 ?
+                "secret_distribution": "normal",
                 "claimed": 128,
                 "category": [
                     1,
                 ],
                 "ring": "x^n + \sum^{n-1}_{i=1} f_i x^i + f_0 \\text{ *}"
             },
-            { # page 24, table 2.1, 128 bits of security
+            {
                 "n": 1280,
                 "sd": sqrt(2),
                 "q": 301057,
-                "secret_distribution": "normal", # 9*1280,
+                "secret_distribution": "normal",
                 "claimed": 160,
                 "category": [
                     1,
                 ],
                 "ring": "x^n + \sum^{n-1}_{i=1} f_i x^i + f_0 \\text{ *}"
             },
-            { # 192 bits of security
+            {
                 "n": 1536,
                 "sd": sqrt(2),
                 "q": 737281,
-                "secret_distribution": "normal", # 7*1536,
+                "secret_distribution": "normal",
                 "claimed": 192,
                 "category": [
                     3,
                 ],
                 "ring": "x^n + \sum^{n-1}_{i=1} f_i x^i + f_0 \\text{ *}"
             },
-            { # 256 bits of security
+            {
                 "n": 2048,
                 "sd": sqrt(2),
                 "q": 1198081,
-                "secret_distribution": "normal", # 7*2048,
+                "secret_distribution": "normal",
                 "claimed": 256,
                 "category": [
                     5,
@@ -1412,11 +1411,11 @@ LWE_SCHEMES = [
     {
         "name": "Titanium.KEM",
         "params": [
-            { # page 27, table 2.6
+            {
                 "n": 1024,
                 "sd": sqrt(2),
                 "q": 118273,
-                "secret_distribution": "normal", # 10*1024,
+                "secret_distribution": "normal",
                 "claimed": 128,
                 "category": [
                     1,
@@ -1427,7 +1426,7 @@ LWE_SCHEMES = [
                 "n": 1280,
                 "sd": sqrt(2),
                 "q": 430081,
-                "secret_distribution": "normal", # 10*1280,
+                "secret_distribution": "normal",
                 "claimed": 160,
                 "category": [
                     1,
@@ -1438,7 +1437,7 @@ LWE_SCHEMES = [
                 "n": 1536,
                 "sd": sqrt(2),
                 "q": 783361,
-                "secret_distribution": "normal", # 8*1536,
+                "secret_distribution": "normal",
                 "claimed": 192,
                 "category": [
                     3,
@@ -1449,7 +1448,7 @@ LWE_SCHEMES = [
                 "n": 2048,
                 "sd": sqrt(2),
                 "q": 1198081,
-                "secret_distribution": "normal", # 8*2048,
+                "secret_distribution": "normal",
                 "claimed": 256,
                 "category": [
                     5,
