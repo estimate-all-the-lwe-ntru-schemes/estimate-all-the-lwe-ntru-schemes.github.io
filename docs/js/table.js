@@ -224,7 +224,7 @@ var drawTable = function (tableid, m, cb) {
   // enable sortable table
   var tab = $(tableid).DataTable({
     order: [[0, "asc"]],
-    scrollY: "calc(100vh - 470px)",
+    scrollY: "calc(100vh - 480px)",
     scrollX: true,
     scrollCollapse: true,
     paging: false,
