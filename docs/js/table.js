@@ -62,7 +62,6 @@ var drawTable = function (tableid, m, cb) {
 
   // draw the body
   var tbody = $(tableid + " > tbody")[0];
-  console.log("estimates.length = " + estimates.length);
   for (var i = 0; i < estimates.length; i++) {
     var attack = estimates[i];
 
@@ -91,7 +90,6 @@ var drawTable = function (tableid, m, cb) {
     subparams.className = "cell-overflow";
     
     for (var j = 0; j < attack.param.length; j++) {
-      console.log(attack.param[j]);
       if (m === "ntru") {
         subparams.innerHTML += "n = {0}, q = {1}, ⌈log<sub>2</sub> q⌉ = {2},<br>‖f‖<sub>2</sub> = {3}, ‖g‖<sub>2</sub> = {4}".format(
           attack.param[j].n,
@@ -179,7 +177,7 @@ var drawTable = function (tableid, m, cb) {
         content += "# Block size: {0}\n".format(cost.beta);
         content += "# Dimension: {0}\n".format(cost.dim);
         if (attack.param.length > 1) {
-          content += "# NOTE: This scheme relies on different hard problem instances for key recovery and message recovery.\nThe code below gives the cost of the cheaper of the two attacks under the chosen cost model.\n"
+          content += "# NOTE: This scheme relies on different hard problem instances for key recovery and message recovery.\n# The code below gives the cost of the cheaper of the two attacks under the chosen cost model.\n"
         }
         content += "load('https://bitbucket.org/malb/lwe-estimator/raw/HEAD/estimator.py')\n";
         content += "n = {0}\n".format(attack.param[inst].n);
