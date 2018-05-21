@@ -49,52 +49,58 @@ def generate_table_json(estimates_list):
 
         :returns:           the sanitised object
         """
-        ring = False
-        if "ring" in scheme["param"]:
-            ring = scheme["param"]["ring"]
-        # sanitise secret_distribution
-        secret_distribution = False
-        if "secret_distribution" in scheme["param"]:
-            secret_distribution = scheme["param"]["secret_distribution"]
-            if type(secret_distribution) != str:
-                if type(secret_distribution[0]) == tuple:
-                    a = int(secret_distribution[0][0])
-                    b = int(secret_distribution[0][1])
-                    h = int(secret_distribution[1])
-                    secret_distribution = ((a, b), h)
-                else:
-                    a = int(secret_distribution[0])
-                    b = int(secret_distribution[1])
-                    secret_distribution = (a, b)
+        for i in range(len(scheme["param"])):
+            params = scheme["param"][i]
+            # sanitise secret_distribution
+            secret_distribution = False
+            if "secret_distribution" in params:
+                secret_distribution = params["secret_distribution"]
+                if type(secret_distribution) != str:
+                    if type(secret_distribution[0]) == tuple:
+                        a = int(secret_distribution[0][0])
+                        b = int(secret_distribution[0][1])
+                        h = int(secret_distribution[1])
+                        secret_distribution = ((a, b), h)
+                    else:
+                        a = int(secret_distribution[0])
+                        b = int(secret_distribution[1])
+                        secret_distribution = (a, b)
+            
+            ring = False
+            if "ring" in params:
+                ring = params["ring"]
 
-        if "NTRU" in scheme["scheme"]["assumption"]:
-            scheme["param"] = {
-                "n": int(scheme["param"]["n"]),
-                "sd": float(scheme["param"]["sd"]),
-                "q": int(scheme["param"]["q"]),
-                "norm_f": float(scheme["param"]["norm_f"]),
-                "norm_g": float(scheme["param"]["norm_g"]),
-                "claimed": "" if not scheme["param"]["claimed"] else int(scheme["param"]["claimed"]),
-                "category": map(int, scheme["param"]["category"]),
-            }
+            if "NTRU" in scheme["scheme"]["assumption"]:
+                params = {
+                    "n": int(params["n"]),
+                    "sd": float(params["sd"]),
+                    "q": int(params["q"]),
+                    "norm_f": float(params["norm_f"]),
+                    "norm_g": float(params["norm_g"]),
+                    "claimed": "" if not params["claimed"] else int(params["claimed"]),
+                    "category": map(int, params["category"]),
+                }
+            else:
+                # sanitise param object
+                k = None if "k" not in params else params["k"]
+                params = {
+                    "n": int(params["n"]),
+                    "sd": float(params["sd"]),
+                    "q": int(params["q"]),
+                    "claimed": "" if not params["claimed"] else int(params["claimed"]),
+                    "category": map(int, params["category"]),
+                }
+                if k:
+                    params["k"] = k
+
             if secret_distribution:
-                scheme["param"]["secret_distribution"] = str(secret_distribution)
-        else:
-            # sanitise param object
-            k = None if "k" not in scheme["param"] else scheme["param"]["k"]
-            scheme["param"] = {
-                "n": int(scheme["param"]["n"]),
-                "sd": float(scheme["param"]["sd"]),
-                "q": int(scheme["param"]["q"]),
-                "secret_distribution": str(secret_distribution),
-                "claimed": "" if not scheme["param"]["claimed"] else int(scheme["param"]["claimed"]),
-                "category": map(int, scheme["param"]["category"]),
-            }
-            if k:
-                scheme["param"]["k"] = k
+                params["secret_distribution"] = str(secret_distribution)
 
-        if ring:
-            scheme["param"]["ring"] = ring
+            if ring:
+                params["ring"] = ring
+
+            # save sanitised param set
+            scheme["param"][i] = params
         return scheme
 
     return json.dumps(map(sanitise_param, estimates_list))

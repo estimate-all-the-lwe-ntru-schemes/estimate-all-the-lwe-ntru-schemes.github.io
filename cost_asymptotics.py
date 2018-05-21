@@ -28,7 +28,7 @@ from estimator.estimator import BKZ
 
 # List of proposed cost models for BKZ
 # Q-Sieving | Sieving | Q-Enum | Enum
-# with Sieving = Core  | beta | 8d
+# with Rounds = Core  | beta | 8d
 BKZ_COST_ASYMPTOTICS = [
     {
         "name": "Q‑Core‑Sieve",
@@ -109,10 +109,10 @@ BKZ_COST_ASYMPTOTICS = [
     },
     {
         "name": "Lotus",
-        "reduction_cost_model": lambda beta, d, B: ZZ(2)**(-0.7550818937366788*beta + 0.12472525302110621*beta*log(beta,2) + 2.254440896969337),
+        "reduction_cost_model": lambda beta, d, B: ZZ(2)**RR(-0.7550818937366788*beta + 0.12472525302110621*beta*log(beta,2) + 2.254440896969337),
         "success_probability": 0.99,
-        "human_friendly": "2<sup>-0.755 β + 0.125 β ㏒ β + O(1)</sup>",
-        "group": "Quantum enumeration",
+        "human_friendly": "2<sup>0.125 β ㏒ β -0.755 β + O(1)</sup>",
+        "group": "Classical enumeration",
     },
     {
         "name": "Core‑Enum + O(1)",

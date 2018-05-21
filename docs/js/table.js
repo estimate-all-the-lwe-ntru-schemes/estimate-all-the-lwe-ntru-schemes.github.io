@@ -62,6 +62,7 @@ var drawTable = function (tableid, m, cb) {
 
   // draw the body
   var tbody = $(tableid + " > tbody")[0];
+  console.log("estimates.length = " + estimates.length);
   for (var i = 0; i < estimates.length; i++) {
     var attack = estimates[i];
 
@@ -88,59 +89,73 @@ var drawTable = function (tableid, m, cb) {
     parameters.className = "cell-overflow";
     var subparams = document.createElement("div");
     subparams.className = "cell-overflow";
-    if (m === "ntru") {
-      subparams.innerHTML = "n = {0}, q = {1}, ⌈log<sub>2</sub> q⌉ = {2},<br>‖f‖<sub>2</sub> = {3}, ‖g‖<sub>2</sub> = {4}".format(
-        attack.param.n,
-        attack.param.q,
-        Math.ceil(Math.log2(attack.param.q)),
-        attack.param.norm_f.toFixed(2),
-        attack.param.norm_g.toFixed(2)
-      );
-    } else {
-      subparams.innerHTML = "n = {0}, ".format(
-        attack.param.n,
-      );
-      if ("k" in attack.param) {
-        subparams.innerHTML += "k = {0}, ".format(
-          attack.param.k,
+    
+    for (var j = 0; j < attack.param.length; j++) {
+      console.log(attack.param[j]);
+      if (m === "ntru") {
+        subparams.innerHTML += "n = {0}, q = {1}, ⌈log<sub>2</sub> q⌉ = {2},<br>‖f‖<sub>2</sub> = {3}, ‖g‖<sub>2</sub> = {4}".format(
+          attack.param[j].n,
+          attack.param[j].q,
+          Math.ceil(Math.log2(attack.param[j].q)),
+          attack.param[j].norm_f.toFixed(2),
+          attack.param[j].norm_g.toFixed(2)
+        );
+      } else {
+        subparams.innerHTML += "n = {0}, ".format(
+          attack.param[j].n
+        );
+        if ("k" in attack.param[j]) {
+          subparams.innerHTML += "k = {0}, ".format(
+            attack.param[j].k
+          );
+        }
+        subparams.innerHTML += "q = {0}, ⌈log<sub>2</sub> q⌉ = {1},<br>σ = {2}, secret = {3}".format(
+          attack.param[j].q,
+          Math.ceil(Math.log2(attack.param[j].q)),
+          attack.param[j].sd.toFixed(2),
+          attack.param[j].secret_distribution
         );
       }
-      subparams.innerHTML += "q = {0}, ⌈log<sub>2</sub> q⌉ = {1},<br>σ = {2}, secret = {3}".format(
-        attack.param.q,
-        Math.ceil(Math.log2(attack.param.q)),
-        attack.param.sd.toFixed(2),
-        attack.param.secret_distribution
-      );
-    }
-    if ("ring" in attack.param) {
-      var ring = attack.param.ring;
-      // ring = ring.replace("\\ZZ_q", "ℤ<sub>q</sub>");
-      ring = ring.replace("\\sum_{i=0}^n", "∑<span class='supsub'><sup class='sup'>n</sup><sub class='sub'>i = 0</sub></span>");
-      ring = ring.replace("\\sum^n_{i=0}", "∑<span class='supsub'><sup class='sup'>n</sup><sub class='sub'>i = 0</sub></span>");
-      ring = ring.replace("\\sum_{i=0}^{n-1}", "∑<span class='supsub'><sup class='sup'>n-1</sup><sub class='sub'>i = 0</sub></span>");
-      ring = ring.replace("\\sum^{n-1}_{i=0}", "∑<span class='supsub'><sup class='sup'>n-1</sup><sub class='sub'>i = 0</sub></span>");
-      ring = ring.replace("\\sum_{i=1}^{n-1}", "∑<span class='supsub'><sup class='sup'>n-1</sup><sub class='sub'>i = 1</sub></span>");
-      ring = ring.replace("\\sum^{n-1}_{i=1}", "∑<span class='supsub'><sup class='sup'>n-1</sup><sub class='sub'>i = 1</sub></span>");
-      ring = ring.replace("^n", "<sup>n</sup>");
-      ring = ring.replace("^p", "<sup>p</sup>");
-      ring = ring.replace("^{n/k}", "<sup>n/k</sup>");
-      ring = ring.replace("^{n/(2k)}", "<sup>n/(2k)</sup>");
-      ring = ring.replace("^i", "<sup>i</sup>");
-      ring = ring.replace("_i", "<sub>i</sub>");
-      ring = ring.replace("_0", "<sub>0</sub>");
-      ring = ring.replace("\\text{ *}", "");
-      ring = ring.replace("\\text{ \\textdagger}", "");
-      subparams.innerHTML += ",<br>𝜙 = {0}".format(ring);
+      if ("ring" in attack.param[j]) {
+        var ring = attack.param[j].ring;
+        // ring = ring.replace("\\ZZ_q", "ℤ<sub>q</sub>");
+        ring = ring.replace("\\sum_{i=0}^n", "∑<span class='supsub'><sup class='sup'>n</sup><sub class='sub'>i = 0</sub></span>");
+        ring = ring.replace("\\sum^n_{i=0}", "∑<span class='supsub'><sup class='sup'>n</sup><sub class='sub'>i = 0</sub></span>");
+        ring = ring.replace("\\sum_{i=0}^{n-1}", "∑<span class='supsub'><sup class='sup'>n-1</sup><sub class='sub'>i = 0</sub></span>");
+        ring = ring.replace("\\sum^{n-1}_{i=0}", "∑<span class='supsub'><sup class='sup'>n-1</sup><sub class='sub'>i = 0</sub></span>");
+        ring = ring.replace("\\sum_{i=1}^{n-1}", "∑<span class='supsub'><sup class='sup'>n-1</sup><sub class='sub'>i = 1</sub></span>");
+        ring = ring.replace("\\sum^{n-1}_{i=1}", "∑<span class='supsub'><sup class='sup'>n-1</sup><sub class='sub'>i = 1</sub></span>");
+        ring = ring.replace("^n", "<sup>n</sup>");
+        ring = ring.replace("^p", "<sup>p</sup>");
+        ring = ring.replace("^{n/k}", "<sup>n/k</sup>");
+        ring = ring.replace("^{n/(2k)}", "<sup>n/(2k)</sup>");
+        ring = ring.replace("^i", "<sup>i</sup>");
+        ring = ring.replace("_i", "<sub>i</sub>");
+        ring = ring.replace("_0", "<sub>0</sub>");
+        ring = ring.replace("\\text{ *}", "");
+        ring = ring.replace("\\text{ \\textdagger}", "");
+        subparams.innerHTML += ",<br>𝜙 = {0}".format(ring);
+      }
+      if (j < attack.param.length - 1) {
+        subparams.innerHTML += '<br><div class="par-sep"></div>';
+      }
     }
     parameters.appendChild(subparams);
     tr.appendChild(parameters);
     var claimed = document.createElement("td");
     claimed.className = "ra";
-    claimed.innerText = attack.param.claimed;
+    // NOTE: we pick as claim the lowest taken across parameters for the single instance
+    _claim = 9999;
+    for (var j = 0; j < attack.param.length; j++) {
+      _claim = Math.min(_claim, attack.param[j].claimed);
+    }
+    claimed.innerText = _claim;
     tr.appendChild(claimed);
     var category = document.createElement("td");
     category.className = "ra";
-    category.innerText = attack.param.category.join(", ");
+    // NOTE: we assume an instance with multiple parameter sets
+    // will have them all aim at the same category
+    category.innerText = attack.param[0].category.join(", ");
     tr.appendChild(category);
     var atk = document.createElement("td");
     atk.className = "ra";
@@ -156,23 +171,27 @@ var drawTable = function (tableid, m, cb) {
         var cell = document.createElement("td");
         cell.className = "data-entry";
         cell.innerText = cost.rop;
+        var inst = cost.inst;
 
         // add reproducible result
         var content = "# To reproduce the estimate run this snippet on http://aleph.sagemath.org/\n";
         content += "# Ring ops: {0}\n".format(cost.rop);
         content += "# Block size: {0}\n".format(cost.beta);
         content += "# Dimension: {0}\n".format(cost.dim);
+        if (attack.param.length > 1) {
+          content += "# NOTE: This scheme relies on different hard problem instances for key recovery and message recovery.\nThe code below gives the cost of the cheaper of the two attacks under the chosen cost model.\n"
+        }
         content += "load('https://bitbucket.org/malb/lwe-estimator/raw/HEAD/estimator.py')\n";
-        content += "n = {0}\n".format(attack.param.n);
+        content += "n = {0}\n".format(attack.param[inst].n);
         // if ("k" in attack.param) {
         //   content += "k = {0}\n".format(attack.param.k);
         // }
-        content += "sd = {0}\n".format(attack.param.sd);
-        content += "q = {0}\n".format(attack.param.q);
+        content += "sd = {0}\n".format(attack.param[inst].sd);
+        content += "q = {0}\n".format(attack.param[inst].q);
         content += "alpha = sqrt(2*pi)*sd/RR(q)\n";
         // content += "m = {0}\n".format(m == "2n"? "2*n/k" : "n/k");
         content += "m = {0}\n".format(m == "2n"? "2*n" : "n");
-        content += "secret_distribution = {0}\n".format(attack.param.secret_distribution == "normal" ? '"normal"' : attack.param.secret_distribution);
+        content += "secret_distribution = {0}\n".format(attack.param[inst].secret_distribution == "normal" ? '"normal"' : attack.param[inst].secret_distribution);
         content += "success_probability = 0.99\n";
         content += "reduction_cost_model = {0}\n".format(models[j].lambda);
 
@@ -202,7 +221,7 @@ var drawTable = function (tableid, m, cb) {
             h: 350,
             w: 620,
             title: self.pqcTitle,
-            multi: true,
+            multi: true
           }, function (content) {
             self.myCodeMirror = CodeMirror(content, {
               value: self.pqcContent,
@@ -224,7 +243,7 @@ var drawTable = function (tableid, m, cb) {
   // enable sortable table
   var tab = $(tableid).DataTable({
     order: [[0, "asc"]],
-    scrollY: "calc(100vh - 490px)",
+    scrollY: "calc(100vh - 420px)",
     scrollX: true,
     scrollCollapse: true,
     paging: false,
@@ -255,7 +274,7 @@ var drawTable = function (tableid, m, cb) {
           });
         }
       });
-    },
+    }
   });
   tables[tableid.substr(1)] = tab;
 
@@ -348,7 +367,7 @@ $(document).ready(function () {
           placeholder: 'Select cost models',
       },
       onOptionClick: filterCols,
-      onSelectAll: filterCols,
+      onSelectAll: filterCols
     });
   })
 
@@ -371,12 +390,12 @@ $(document).ready(function () {
     show: {
       effect: "fadeIn",
       delay: 0,
-      duration: 0,
+      duration: 0
     },
     hide: {
       effect: "fadeOut",
       delay: 0,
-      duration: 0,
+      duration: 0
     }
   });
  });
